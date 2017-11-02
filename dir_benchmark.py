@@ -69,7 +69,7 @@ def do_benchmark(file_uuid):
     start = time.perf_counter()
     create_path(path, file_uuid)
     elapsed_time = time.perf_counter() - start
-    my_logger.info("created path: " + path + " in " + '%.3f' % (elapsed_time * 1000) + "ms" )
+    my_logger.info("created path: " + directory + "/" + path + " in " + '%.3f' % (elapsed_time * 1000) + "ms" )
 
 generate_uuid(total_paths)
 pool = Pool(processes=max_processes)
