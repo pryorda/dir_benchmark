@@ -1,4 +1,4 @@
-### Example
+### Running the benchmark
 This will use 10 processes to create a total of 10000 directories. It will log the time and completion time to benchmark.log
 ```
 ./dir_benchmark.py -m 10 -t 10000 -d /mnt/fsstore/test/
