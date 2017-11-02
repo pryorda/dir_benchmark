@@ -54,7 +54,7 @@ random_data = os.urandom(file_size)
 # Functions:
 # create_path based on path
 def create_path(path, file_uuid):
-    path = directory + "/" + path
+    path = directory + "/"
     os.makedirs(path)
 
 # generate_uuids(int)
@@ -63,7 +63,7 @@ def generate_uuid(num):
         uuid_array.append(str(uuid.uuid4()))
 
 def create_file(path, file_uuid):
-    filename = directory + "/" + path + "/" + file_uuid
+    filename = directory + "/" + file_uuid
     file = open(filename, "wb")
     file.write(random_data)
     file.close()
