@@ -55,7 +55,10 @@ random_data = os.urandom(file_size)
 # create_path based on path
 def create_path(path, file_uuid):
     path = directory + "/"
-    os.makedirs(path)
+    try:
+        os.makedirs(path)
+    except:
+        my_logger.error("creating directory failed: probably exists")
 
 # generate_uuids(int)
 def generate_uuid(num):
@@ -82,7 +85,7 @@ def do_benchmark(file_uuid):
     start_file_create = time.perf_counter()
     create_file(path, file_uuid)
     elapsed_time_file = time.perf_counter() - start_file_create
-    my_logger.info("created file: " + directory + "/" + path + "/" + file_uuid + " in " + '%.3f' % (elapsed_time_file * 1000) + "ms" )
+    my_logger.info("created file: " + directory + "/" + "/" + file_uuid + " in " + '%.3f' % (elapsed_time_file * 1000) + "ms" )
 
 generate_uuid(total_paths)
 pool = Pool(processes=max_processes)
