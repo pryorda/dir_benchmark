@@ -10,7 +10,6 @@ import re
 
 
 processes = set()
-max_processes = 10
 
 # Usage
 parser = OptionParser()
@@ -74,7 +73,7 @@ def do_benchmark(file_uuid):
 
 generate_uuid(total_paths)
 pool = Pool(processes=max_processes)
-start_time = time.process_time()
+start_time = time.perf_counter()
 pool.map(do_benchmark, uuid_array)
-total_runtime = time.process_time() - start_time
+total_runtime = time.perf_counter() - start_time
 my_logger.info("Created " + str(total_paths) + " in " + '%d' % (total_runtime) + " seconds" )
