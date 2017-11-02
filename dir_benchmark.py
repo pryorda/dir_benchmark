@@ -7,7 +7,6 @@ import logging
 import time
 import uuid
 import re
-import random
 
 processes = set()
 
@@ -48,8 +47,9 @@ my_logger.setLevel(logging.DEBUG)
 my_logger.addHandler(my_handler)
 
 uuid_array = []
+file_size = 8 * 4096
+random_data = os.urandom(file_size)
 
-random_data = random.getrandbits(8 * 4096)
 
 # Functions:
 # create_path based on path
