@@ -74,4 +74,7 @@ def do_benchmark(file_uuid):
 
 generate_uuid(total_paths)
 pool = Pool(processes=max_processes)
+start_time = time.process_time()
 pool.map(do_benchmark, uuid_array)
+total_runtime = time.process_time() - start_time
+my_logger.info("Created " + str(total_paths) + " in " + '%d' % (total_runtime) + " seconds" )
