@@ -20,7 +20,7 @@ parser.add_option("-m", "--max-processes", dest="max_processes",
 parser.add_option("-d", "--directory", dest="directory",
                   help="destination directory", metavar="dir")
 
-parser.add_option("-t", "--total_paths", dest="total_paths",
+parser.add_option("-t", "--total-paths", dest="total_paths",
                   help="total absolute paths to create", metavar="tpc")
 
 (options, args) = parser.parse_args()
