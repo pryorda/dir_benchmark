@@ -65,7 +65,7 @@ def do_benchmark(file_uuid):
     stripped_uuid = re.sub('-', '', file_uuid)
     path = stripped_uuid[0:2] + "/" + stripped_uuid[2:5] + "/" + stripped_uuid[5:8] + "/" + \
            stripped_uuid[8:11] + "/" + stripped_uuid[11:14] + "/" + stripped_uuid[14:17]
-    my_logger.info("creating path: " + directory + path)
+    my_logger.info("creating path: " + directory + "/" + path)
     start = time.perf_counter()
     create_path(path, file_uuid)
     elapsed_time = time.perf_counter() - start
