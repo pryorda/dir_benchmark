@@ -7,7 +7,7 @@ import logging
 import time
 import uuid
 import re
-
+import random
 
 processes = set()
 
@@ -49,6 +49,8 @@ my_logger.addHandler(my_handler)
 
 uuid_array = []
 
+random_data = random.getrandbits(8 * 4096)
+
 # Functions:
 # create_path based on path
 def create_path(path, file_uuid):
@@ -60,6 +62,12 @@ def generate_uuid(num):
     for x in range(num):
         uuid_array.append(str(uuid.uuid4()))
 
+def create_file(path, file_uuid):
+    filename = directory + "/" + path + "/" + file_uuid
+    file = open(filename, "w")
+    file.write(random_data)
+    file.close()
+
 
 def do_benchmark(file_uuid):
     stripped_uuid = re.sub('-', '', file_uuid)
@@ -70,10 +78,15 @@ def do_benchmark(file_uuid):
     create_path(path, file_uuid)
     elapsed_time = time.perf_counter() - start
     my_logger.info("created path: " + directory + "/" + path + " in " + '%.3f' % (elapsed_time * 1000) + "ms" )
+    my_logger.info("creating file: " + directory + "/" + path + "/" + file_uuid)
+    start_file_create = time.perf_counter()
+    create_file(path, file_uuid)
+    elapsed_time_file = time.perf_counter() - start_file_create
+    my_logger.info("created file: " + directory + "/" + path + "/" + file_uuid + " in " + '%.3f' % (elapsed_time_file * 1000) + "ms" )
 
 generate_uuid(total_paths)
 pool = Pool(processes=max_processes)
 start_time = time.perf_counter()
 pool.map(do_benchmark, uuid_array)
 total_runtime = time.perf_counter() - start_time
-my_logger.info("Created " + str(total_paths) + " paths in " + '%d' % (total_runtime) + " seconds" )
+my_logger.info("Created " + str(total_paths) + " paths with files in " + '%d' % (total_runtime) + " seconds" )
