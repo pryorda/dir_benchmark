@@ -64,7 +64,7 @@ def generate_uuid(num):
 
 def create_file(path, file_uuid):
     filename = directory + "/" + path + "/" + file_uuid
-    file = open(filename, "w")
+    file = open(filename, "wb")
     file.write(random_data)
     file.close()
 
